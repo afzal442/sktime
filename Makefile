@@ -47,11 +47,7 @@ clean: ## Clean build dist and egg directories left after install
 dist: ## Make Python source distribution
 	python3 setup.py sdist bdist_wheel
 
-all: html
+docs: doc
 
-html: ## Build documentation with Sphinx
-	python3 ../source/algo_list.py
-	sphinx-build -b html -d $(BUILDDIR)/doctrees $(SPHINXOPTS) source -W $(BUILDDIR)/html
-	cp -r ../bokeh/server/static $(BUILDDIR)/html/
-	@echo
-	@echo "Build finished. The HTML pages are in $(BUILDDIR)/html."
+doc: ## Build documentation with Sphinx
+	$(MAKE) -C $(DOC_DIR) html
